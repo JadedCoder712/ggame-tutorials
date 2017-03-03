@@ -16,6 +16,11 @@ bg = Sprite(bg_asset, (0,0))
 # A ball! This is already in the ggame-tutorials repository
 ball_asset = ImageAsset("images/orb-150545_640.png")
 ball = Sprite(ball_asset, (0, 0))
+# Sounds
+pew1_asset = SoundAsset("sounds/pew1.mp3")
+pew1 = Sound(pew1_asset)
+pop_asset = SoundAsset("sounds/reappear.mp3")
+pop = Sound(pop_asset)
 # Original image is too big. Scale it to 1/10 its original size
 ball.scale = 0.1
 # custom attributes
@@ -36,11 +41,13 @@ def spaceKey(event):
 # Handle the "reverse" key
 def reverseKey(event):
     reverse(ball)
+    pop.play()
 
 # Handle the mouse click
 def mouseClick(event):
     ball.x = event.x
     ball.y = event.y
+    pew1.play()
     
 myapp = App(SCREEN_WIDTH, SCREEN_HEIGHT)
 
