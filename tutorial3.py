@@ -21,6 +21,10 @@ pew1_asset = SoundAsset("sounds/pew1.mp3")
 pew1 = Sound(pew1_asset)
 pop_asset = SoundAsset("sounds/reappear.mp3")
 pop = Sound(pop_asset)
+dog1_asset = SoundAsset("sounds/dog-panting-breathing-fast-daniel_simon.mp3")
+dog = Sound(dog1_asset)
+bark_asset = SoundAsset("sounds/Dog_woof.mp3")
+bark = Sound(bark_asset)
 # Original image is too big. Scale it to 1/10 its original size
 ball.scale = 0.1
 # custom attributes
@@ -37,17 +41,18 @@ def step():
 # Handle the space key
 def spaceKey(event):
     ball.go = not ball.go
+    dog.play()
 
 # Handle the "reverse" key
 def reverseKey(event):
     reverse(ball)
-    pop.play()
+    bark.play()
 
 # Handle the mouse click
 def mouseClick(event):
     ball.x = event.x
     ball.y = event.y
-    pew1.play()
+    bark.play()
     
 myapp = App(SCREEN_WIDTH, SCREEN_HEIGHT)
 
