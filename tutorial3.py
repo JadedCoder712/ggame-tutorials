@@ -14,7 +14,7 @@ bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, green)
 bg = Sprite(bg_asset, (0,0))
 
 # A ball! This is already in the ggame-tutorials repository
-ball_asset = ImageAsset("images/orb-150545_640.png")
+ball_asset = ImageAsset("images/dog-png-29.png")
 ball = Sprite(ball_asset, (0, 0))
 # Sounds
 pew1_asset = SoundAsset("sounds/pew1.mp3")
@@ -26,7 +26,7 @@ dog = Sound(dog1_asset)
 bark_asset = SoundAsset("sounds/Dog_woof.mp3")
 bark = Sound(bark_asset)
 # Original image is too big. Scale it to 1/10 its original size
-ball.scale = 0.1
+ball.scale = 0.3
 # custom attributes
 ball.dir = 1
 ball.go = True
