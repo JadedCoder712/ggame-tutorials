@@ -1,12 +1,12 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
+SCREEN_WIDTH = 500
+SCREEN_HEIGHT = 400
 
 
 class SpaceField(Sprite):
     field=ImageAsset("images/starfield.jpg")
-    
+    field.scale=2
     
     def __init__(self, position):
          super().__init__(SpaceField.field, position)
@@ -103,10 +103,10 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
         bg = Sprite(bg_asset, (0,0))
+        SpaceField((0,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
-        #SpaceBlasts((200,50))
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
