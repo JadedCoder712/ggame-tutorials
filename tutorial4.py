@@ -6,7 +6,8 @@ SCREEN_HEIGHT = 400
 
 class SpaceField(Sprite):
     field=ImageAsset("images/starfield.jpg")
-    field.scale=2
+    
+    
     
     def __init__(self, position):
          super().__init__(SpaceField.field, position)
@@ -21,7 +22,6 @@ class SpaceShip(Sprite):
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
-    
 
     
     def __init__(self, position):
@@ -107,9 +107,11 @@ class SpaceGame(App):
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
+        
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+
     
     
         
