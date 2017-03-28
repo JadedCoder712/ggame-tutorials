@@ -3,13 +3,17 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
+
+
 class SpaceShip(Sprite):
     """
     Animated space ship
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
+    blast = ImageAsset("images/blast.png")
 
+    
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
         self.vx = 1
@@ -24,6 +28,10 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.Stop)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.Stop)
         SpaceGame.listenKeyEvent("keydown", "w", self.Up)
+        SpaceGame.listenKeyEvent("keydown", "s", self.Down)
+        SpaceGame.listenKeyEvent("keydown", "a", self.Left)
+        SpaceGame.listenKeyEvent("keydown", "d", self.Right)
+       
         
         self.fxcenter = self.fycenter = 0.5
     def step(self):
@@ -49,12 +57,19 @@ class SpaceShip(Sprite):
     def Stop(self, event):
         self.vr = 0.0
     def Up(self, event):
-        self.vy -= 1
+        self.vy -= 0.5
     def Down(self, event):
-        self.vy += 1
+        self.vy += 0.5
     def Left(self, event):
-        
-        
+        self.vx -= 0.5
+    def Right(self, event):
+        self.vx += 0.5
+    
+class SpaceBlasters(Sprite)
+    def __init__(self, position):
+        super().__init__(SpaceShip
+
+
 class SpaceGame(App):
     """
     Tutorial4 space game example.
