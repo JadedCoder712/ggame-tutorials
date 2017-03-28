@@ -11,7 +11,7 @@ class SpaceShip(Sprite):
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
-    blast = ImageAsset("images/blast.png")
+    
 
     
     def __init__(self, position):
@@ -64,10 +64,7 @@ class SpaceShip(Sprite):
         self.vx -= 0.5
     def Right(self, event):
         self.vx += 0.5
-    
-class SpaceBlasters(Sprite)
-    def __init__(self, position):
-        super().__init__(SpaceShip
+
 
 
 class SpaceGame(App):
