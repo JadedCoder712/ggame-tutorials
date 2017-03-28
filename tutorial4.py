@@ -4,6 +4,16 @@ SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
 
+class SpaceField(Sprite):
+    field=ImageAsset("images/starfield.jpg")
+    
+    
+    def __init__(self, position):
+         super().__init__(SpaceField.field, position)
+         self.vx=1
+         self.vy=1
+         self.vr=0
+
 
 class SpaceShip(Sprite):
     """
@@ -64,9 +74,25 @@ class SpaceShip(Sprite):
         self.vx -= 0.5
     def Right(self, event):
         self.vx += 0.5
-
-
-
+"""
+class SpaceBlasts(Sprite):
+    blast=ImageAsset("images/bunny.png")
+    
+    
+    def __init__(self, position):
+         super().__init__(SpaceBlasts.blast, position)
+         self.vx=1
+         self.vy=1
+         self.vr=0
+         SpaceGame.listenKeyEvent("keydown", "p", self.Blast)
+         self.blast=False
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+    def Blast(self, event):
+        self.blast=True
+         
+"""
 class SpaceGame(App):
     """
     Tutorial4 space game example.
@@ -80,6 +106,7 @@ class SpaceGame(App):
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
+        #SpaceBlasts((200,50))
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
