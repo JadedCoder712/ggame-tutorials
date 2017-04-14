@@ -64,7 +64,7 @@ class SpaceShip(Sprite):
         self.scale = 0.1
         self.thrust = 0
         self.thrustframe = 1
-        size = 1
+        self.size = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.Rotate)
@@ -99,7 +99,7 @@ class SpaceShip(Sprite):
             """
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
-            size += 1
+            self.size += 1
         bouncingCollision = self.collidingWithSprites(Bounce)
         if len(bouncingCollision) > 0:
             self.visible = False
