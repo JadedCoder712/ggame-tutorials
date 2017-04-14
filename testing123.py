@@ -29,6 +29,7 @@ class Sun(Sprite):
         collidingWith = self.collidingWithSprites(SpaceShip)
         if len(collidingWith) > 0:
             self.visible = False
+            print("Hi Gabe Newell here")
         
     
 class Bounce(Sprite):
@@ -40,11 +41,19 @@ class Bounce(Sprite):
         self.vx=4
         self.vy=4
         self.vr=5
+        self.size=0
         self.fxcenter = self.fycenter = 0.5
     def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        bouncingCollision = self.collidingWithSprites(Bounce)
+        if (len(bouncingCollision) > 0):
+            if (self.size < SpaceShip.size):
+                self.visible = False
+            if self.size > SpaceShip.size:
+                self.size += SpaceShip.size
+        
         if (self.x < 0):
             self.vx += 5
         if (self.x > SCREEN_WIDTH):
@@ -106,10 +115,14 @@ class SpaceShip(Sprite):
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
             self.size += 1
+            self.scale += 0.0001
             
         bouncingCollision = self.collidingWithSprites(Bounce)
-        if len(bouncingCollision) > 0:
-            self.visible = False
+        if (len(bouncingCollision) > 0):
+            if (self.size < Bounce.size):
+                self.visible = False
+            if self.size > Bounce.size:
+                self.size += Bounce.size
         if (self.x < 0):
             self.vx += 1
         if (self.x > SCREEN_WIDTH):
