@@ -24,6 +24,12 @@ class Sun(Sprite):
         self.vy=0.3
         self.vr=0
         self.scale = 0.3
+        self.fxcenter = self.fycenter = 0.5
+    def step(self):
+        collidingWith = self.collidingWithSprites(SpaceShip)
+        if len(collidingWith) > 0:
+            self.visible = False
+        
     
 class Bounce(Sprite):
     
@@ -100,6 +106,7 @@ class SpaceShip(Sprite):
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
             self.size += 1
+            
         bouncingCollision = self.collidingWithSprites(Bounce)
         if len(bouncingCollision) > 0:
             self.visible = False
