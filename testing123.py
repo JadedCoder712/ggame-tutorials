@@ -111,7 +111,7 @@ class SpaceShip(Sprite):
             self.vy += 0.75
         if (self.y > SCREEN_HEIGHT):
             self.vy -= 0.75
-        growingCollision = self.collidingWithSprites(Sun)
+       
             
     def Respawn(self, event):
         self.x=1
