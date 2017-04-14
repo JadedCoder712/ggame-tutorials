@@ -20,9 +20,10 @@ class Sun(Sprite):
     
     def __init__(self, position):
         super().__init__(Sun.sun, position)
-        self.vx=0.5
-        self.vy=0.5
+        self.vx=0.3
+        self.vy=0.3
         self.vr=0
+        self.scale = 0.3
     
 class Bounce(Sprite):
     
@@ -46,13 +47,13 @@ class Bounce(Sprite):
             self.vy += 5
         if (self.y > SCREEN_HEIGHT):
             self.vy -= 5
+        
     
 class SpaceShip(Sprite):
     """
     Animated space ship
     """
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
+    asset = ImageAsset("images/beach-ball-575425_640.png")
     
     
     def __init__(self, position):
@@ -60,8 +61,10 @@ class SpaceShip(Sprite):
         self.vx = 1
         self.vy = 1
         self.vr = 0.01
+        self.scale = 0.1
         self.thrust = 0
         self.thrustframe = 1
+        size = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.Rotate)
@@ -85,17 +88,18 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        """
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-        
         else:
             self.setImage(0)
+            """
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
-            self.visible = False
+            size += 1
         bouncingCollision = self.collidingWithSprites(Bounce)
         if len(bouncingCollision) > 0:
             self.visible = False
@@ -107,6 +111,7 @@ class SpaceShip(Sprite):
             self.vy += 0.75
         if (self.y > SCREEN_HEIGHT):
             self.vy -= 0.75
+        growingCollision = self.collidingWithSprites(Sun)
             
     def Respawn(self, event):
         self.x=1
@@ -174,8 +179,7 @@ class SpaceGame(App):
         #SpaceShip((200,50))
         Sun((460, 200))
         Bounce((800, 300))
-        Bounce((600, 200))
-        Bounce((300, 400))
+        
         
         
         
