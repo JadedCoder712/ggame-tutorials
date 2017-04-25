@@ -2,7 +2,8 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 500
-
+SunSize = 1
+ShipSize = 1
 
 class SpaceField(Sprite):
     field=ImageAsset("images/starfield.jpg")
@@ -47,13 +48,17 @@ class Bounce(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        bouncingCollision = self.collidingWithSprites(Bounce)
+        bouncingCollision = self.collidingWithSprites(SpaceShip)
         if (len(bouncingCollision) > 0):
-            if (self.size < SpaceShip.size):
+            if (SunSize < ShipSize):
                 self.visible = False
-            if self.size > SpaceShip.size:
-                self.size += SpaceShip.size
-        
+            if (SunSize > ShipSize):
+                SunSize += ShipSize
+        collidingsunWith = self.collidingWithSprites(SpaceShip)
+        if len(collidingsunWith) > 0:
+            SunSize += 1
+            self.scale += 0.0001
+            
         if (self.x < 0):
             self.vx += 5
         if (self.x > SCREEN_WIDTH):
@@ -114,15 +119,16 @@ class SpaceShip(Sprite):
             """
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
-            self.size += 1
+            #ShipSize += 1
             self.scale += 0.0001
+            
             
         bouncingCollision = self.collidingWithSprites(Bounce)
         if (len(bouncingCollision) > 0):
-            if (self.size < Bounce.size):
+            if (SunSize > ShipSize):
                 self.visible = False
-            if self.size > Bounce.size:
-                self.size += Bounce.size
+            if (SunSize < ShipSize):
+                ShipSize += SunSize
         if (self.x < 0):
             self.vx += 1
         if (self.x > SCREEN_WIDTH):
@@ -137,6 +143,7 @@ class SpaceShip(Sprite):
         self.x=1
         self.y=1
         self.visible=True 
+        ShipSize += 1
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
