@@ -2,11 +2,9 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 500
-SunSize = 1
-ShipSize = 1
 
 class SpaceField(Sprite):
-    field=ImageAsset("images/starfield.jpg")
+    field=ImageAsset("images/field.jpg")
     
     
     
@@ -16,64 +14,15 @@ class SpaceField(Sprite):
          self.vy=1
          self.vr=0
 
-class Sun(Sprite):
-    sun=ImageAsset("images/sun.png")
-    
-    def __init__(self, position):
-        super().__init__(Sun.sun, position)
-        self.vx=0.3
-        self.vy=0.3
-        self.vr=0
-        self.scale = 0.3
-        self.fxcenter = self.fycenter = 0.5
-    def step(self):
-        collidingWith = self.collidingWithSprites(SpaceShip)
-        if len(collidingWith) > 0:
-            self.visible = False
-            print("Hi Gabe Newell here")
+
         
     
-class Bounce(Sprite):
-    
-    sun=ImageAsset("images/sun.png")
-    
-    def __init__(self, position):
-        super().__init__(Bounce.sun, position)
-        self.vx=4
-        self.vy=4
-        self.vr=5
-        self.size=0
-        self.fxcenter = self.fycenter = 0.5
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
-        bouncingCollision = self.collidingWithSprites(SpaceShip)
-        if (len(bouncingCollision) > 0):
-            if (SunSize < ShipSize):
-                self.visible = False
-            if (SunSize > ShipSize):
-                SunSize += ShipSize
-        collidingsunWith = self.collidingWithSprites(SpaceShip)
-        if len(collidingsunWith) > 0:
-            SunSize += 1
-            self.scale += 0.0001
-            
-        if (self.x < 0):
-            self.vx += 5
-        if (self.x > SCREEN_WIDTH):
-            self.vx -= 5
-        if (self.y < 0):
-            self.vy += 5
-        if (self.y > SCREEN_HEIGHT):
-            self.vy -= 5
-        
     
 class SpaceShip(Sprite):
     """
     Animated space ship
     """
-    asset = ImageAsset("images/beach-ball-575425_640.png")
+    asset = ImageAsset("images/28293b2fe5801e03f1f70ed61c8397f6_airplane-clipart-transparent-airplane-clipart-transparent-background_2400-1009.png")
     
     
     def __init__(self, position):
@@ -83,7 +32,6 @@ class SpaceShip(Sprite):
         self.vr = 0.01
         self.scale = 0.1
         self.thrust = 0
-        self.thrustframe = 1
         self.size = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
@@ -108,39 +56,15 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        """
-        if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-        else:
-            self.setImage(0)
-            """
-        collidingWith = self.collidingWithSprites(Sun)
-        if len(collidingWith) > 0:
-            #ShipSize += 1
-            self.scale += 0.0001
+        
             
             
-        bouncingCollision = self.collidingWithSprites(Bounce)
-        if (len(bouncingCollision) > 0):
-                self.visible = False
-        if (self.x < 0):
-            self.vx += 1
-        if (self.x > SCREEN_WIDTH):
-            self.vx -= 0.75
-        if (self.y < 0):
-            self.vy += 0.75
-        if (self.y > SCREEN_HEIGHT):
-            self.vy -= 0.75
-       
             
     def Respawn(self, event):
         self.x=1
         self.y=1
-        self.visible=True 
-        def thrustOn(self, event):
+        self.visible=True
+    def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
         self.thrust = 0
@@ -179,10 +103,7 @@ class SpaceGame(App):
         SpaceField((0,0))
         SpaceField((500,0))
         SpaceShip((100,100))
-        #SpaceShip((150,150))
-        #SpaceShip((200,50))
-        Sun((460, 200))
-        Bounce((800, 300))
+       
         
         
         
