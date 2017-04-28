@@ -31,8 +31,8 @@ class Plane(Sprite):
             self.x -= 0.4
         while self.y > 0:
             self.y += self.vy
-            self.y -= 0.5
-        
+            self.y -= 0.4
+         self.rotation += self.vr
     def Forward(self, event):
         self.vx += 0.7
     def Slow(self, event):
@@ -40,4 +40,9 @@ class Plane(Sprite):
     def Up(self, event):
         self.vr += 0.6
         self.vy += 0.6
-    def Down(self, event)
+    def Down(self, event):
+        self.vr -= 0.6
+        self.vy -= 0.6
+    
+    
+    
