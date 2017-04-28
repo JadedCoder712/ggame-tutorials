@@ -2,11 +2,11 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 500
 
-class SpaceField(Sprite):
+class Field(Sprite):
     field=ImageAsset("images/field.jpg")
 
     def __init__(self, position):
-         super().__init__(SpaceField.field, position)
+         super().__init__(Field.field, position)
          self.vx=1
          self.vy=1
          self.vr=0
@@ -49,5 +49,23 @@ class Plane(Sprite):
         self.vr -= 0.6
         self.vy -= 0.6
     
-    
+class Game(App):
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        black = Color(0, 1)
+        noline = LineStyle(0, black)
+        bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
+        bg = Sprite(bg_asset, (0,0))
+        Field((0,0))
+        Plane((100,100))
+        
+    def step(self):
+        for airplane in self.getSpritesbyClass(Plane):
+            ship.step()
+            
+myapp = Game(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp.run()
+
+        
+        
     
