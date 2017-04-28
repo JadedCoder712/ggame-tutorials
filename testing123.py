@@ -125,10 +125,7 @@ class SpaceShip(Sprite):
             
         bouncingCollision = self.collidingWithSprites(Bounce)
         if (len(bouncingCollision) > 0):
-            if (SunSize > ShipSize):
                 self.visible = False
-            if (SunSize < ShipSize):
-                ShipSize += SunSize
         if (self.x < 0):
             self.vx += 1
         if (self.x > SCREEN_WIDTH):
@@ -143,8 +140,7 @@ class SpaceShip(Sprite):
         self.x=1
         self.y=1
         self.visible=True 
-        ShipSize += 1
-    def thrustOn(self, event):
+        def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
         self.thrust = 0
@@ -169,25 +165,6 @@ class SpaceShip(Sprite):
         self.vx += 0.5
         self.thrust = 1
         
-"""
-class SpaceBlasts(Sprite):
-    blast=ImageAsset("images/bunny.png")
-    
-    
-    def __init__(self, position):
-         super().__init__(SpaceBlasts.blast, position)
-         self.vx=1
-         self.vy=1
-         self.vr=0
-         SpaceGame.listenKeyEvent("keydown", "p", self.Blast)
-         self.blast=False
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-    def Blast(self, event):
-        self.blast=True
-         
-"""
 
 class SpaceGame(App):
     """
