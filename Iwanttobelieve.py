@@ -26,4 +26,18 @@ class Plane(Sprite):
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
-        self.x += self.vx
+        while self.x > 0:
+            self.x += self.vx
+            self.x -= 0.4
+        while self.y > 0:
+            self.y += self.vy
+            self.y -= 0.5
+        
+    def Forward(self, event):
+        self.vx += 0.7
+    def Slow(self, event):
+        self.vx -= 0.6
+    def Up(self, event):
+        self.vr += 0.6
+        self.vy += 0.6
+    def Down(self, event)
