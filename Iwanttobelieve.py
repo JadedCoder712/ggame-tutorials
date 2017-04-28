@@ -12,6 +12,18 @@ class SpaceField(Sprite):
          self.vr=0
 
 class Plane(Sprite):
-    airplane = ImageAsset("images/
+    airplane = ImageAsset("images/28293b2fe5801e03f1f70ed61c8397f6_airplane-clipart-transparent-airplane-clipart-transparent-background_2400-1009.png"
     def __init__(self, position):
-        super().__init__(Plane., position)
+        super().__init__(Plane.airplane, position)
+        self.vx = 0
+        self.vy = 0
+        self.vr = 0
+        self.scale = .01
+        Game.listenKeyEvent("keydown", "d", self.Forward)
+        Game.listenKeyEvent("keydown", "a", self.Slow)
+        Game.listenKeyEvent("keydown", "left arrow", self.Up)
+        Game.listenKeyEvent("keydown", "right arrow", self.Down)
+        self.fxcenter = self.fycenter = 0.5
+        
+    def step(self):
+        self.x += self.vx
