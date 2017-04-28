@@ -33,6 +33,11 @@ class Plane(Sprite):
             self.y += self.vy
             self.y -= 0.4
          self.rotation += self.vr
+         """
+         if self.rotation > 90:
+             self.vx = 0
+             self.y -= 
+             """
     def Forward(self, event):
         self.vx += 0.7
     def Slow(self, event):
