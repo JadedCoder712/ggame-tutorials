@@ -12,7 +12,7 @@ class Field(Sprite):
          self.vr=0
 
 class Plane(Sprite):
-    airplane = ImageAsset("images/28293b2fe5801e03f1f70ed61c8397f6_airplane-clipart-transparent-airplane-clipart-transparent-background_2400-1009.png"
+    airplane = ImageAsset("images/28293b2fe5801e03f1f70ed61c8397f6_airplane-clipart-transparent-airplane-clipart-transparent-background_2400-1009.png")
     def __init__(self, position):
         super().__init__(Plane.airplane, position)
         self.vx = 0
@@ -32,12 +32,12 @@ class Plane(Sprite):
         while self.vy >= 0:
             self.y += self.vy
             self.y -= 0.4
-         self.rotation += self.vr
-         """
+        self.rotation += self.vr
+        """
          if self.rotation > 90:
              self.vx = 0
              self.y -= 
-             """
+        """
     def Forward(self, event):
         self.vx += 0.7
     def Slow(self, event):
