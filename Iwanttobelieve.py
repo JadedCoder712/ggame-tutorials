@@ -25,6 +25,7 @@ class Plane(Sprite):
         Game.listenKeyEvent("keydown", "right arrow", self.Down)
         Game.listenKeyEvent("keyup", "right arrow", self.Stop)
         Game.listenKeyEvent("keyup", "left arrow", self.Stop)
+        Game.listenKeyEvent("keydown", "e", self.Print)
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
@@ -52,6 +53,8 @@ class Plane(Sprite):
         #self.vy -= 0.6
     def Stop(self, event):
         self.vr=0
+    def Print(self, event):
+        print(self.rotation)
     
 class Game(App):
     def __init__(self, width, height):
