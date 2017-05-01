@@ -11,13 +11,14 @@ class Field(Sprite):
          self.vx=1
          self.vy=1
          self.vr=0
+"""
 class AOA:
     def __init__(self, x, y, r):
         self.x = x
         self.y = y
         self.rotation = r
     def angle(self):
-        
+"""
     
 class Plane(Sprite):
     airplane = ImageAsset("images/28293b2fe5801e03f1f70ed61c8397f6_airplane-clipart-transparent-airplane-clipart-transparent-background_2400-1009.png")
