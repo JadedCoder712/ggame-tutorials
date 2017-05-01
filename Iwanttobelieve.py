@@ -15,8 +15,8 @@ class Plane(Sprite):
     airplane = ImageAsset("images/28293b2fe5801e03f1f70ed61c8397f6_airplane-clipart-transparent-airplane-clipart-transparent-background_2400-1009.png")
     def __init__(self, position):
         super().__init__(Plane.airplane, position)
-        self.vx = 1
-        self.vy = 1
+        self.vx = 0
+        self.vy = 0
         self.vr = 0
         self.scale = 0.1
         Game.listenKeyEvent("keydown", "d", self.Forward)
@@ -66,7 +66,7 @@ class Game(App):
         bg = Sprite(bg_asset, (0,0))
         """
         Field((0,0))
-        Plane((100,100))
+        Plane((0,500))
         
     def step(self):
         for airplane in self.getSpritesbyClass(Plane):
