@@ -23,6 +23,8 @@ class Plane(Sprite):
         Game.listenKeyEvent("keydown", "a", self.Slow)
         Game.listenKeyEvent("keydown", "left arrow", self.Up)
         Game.listenKeyEvent("keydown", "right arrow", self.Down)
+        Game.listenKeyEvent("keyup", "right arrow", self.Stop)
+        Game.listenKeyEvent("keyup", "left arrow", self.Stop)
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
@@ -43,11 +45,13 @@ class Plane(Sprite):
     def Slow(self, event):
         self.vx -= 0.6
     def Up(self, event):
-        self.vr += 0.6
-        self.vy += 0.6
+        self.vr += 0.1
+        #self.vy += 0.6
     def Down(self, event):
-        self.vr -= 0.6
-        self.vy -= 0.6
+        self.vr -= 0.1
+        #self.vy -= 0.6
+    def Stop(self, event):
+        self.vr=0
     
 class Game(App):
     def __init__(self, width, height):
