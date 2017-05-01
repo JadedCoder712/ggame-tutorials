@@ -63,7 +63,7 @@ class Game(App):
         
     def step(self):
         for airplane in self.getSpritesbyClass(Plane):
-            ship.step()
+            airplane.step()
             
 myapp = Game(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
